@@ -22,10 +22,18 @@
             <button type="submit">Gerar Voucher</button>
         </form>
 
+        <!-- Imagem inicial do "presente" -->
+        <div id="giftImageContainer">
+            <img src="gift.png" alt="Clique para ver seu voucher" id="giftImage" style="display:none; width: 200px; cursor: pointer;">
+        </div>
+
+        <!-- Canvas onde o voucher será desenhado -->
         <canvas id="voucherCanvas" width="400" height="250" style="display:none;"></canvas>
+
+        <!-- Link para download -->
         <div class="download-section" style="display:none;">
             <h2>Seu voucher está pronto!</h2>
-            <a id="downloadLink" download="voucher.png">Baixar Voucher</a>
+            <a id="voucherLink" target="_blank">Clique aqui para ver seu voucher completo</a>
         </div>
     </div>
 

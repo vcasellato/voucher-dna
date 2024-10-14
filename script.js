@@ -37,11 +37,20 @@ document.getElementById('voucherForm').addEventListener('submit', function(event
     // Desconto
     ctx.fillText(`Desconto: ${desconto}%`, 20, 180);
 
-    // Tornando o canvas visível
-    canvas.style.display = "block";
+    // Exibir imagem do "presente" inicial
+    document.getElementById('giftImage').style.display = 'block';
 
-    // Gerando o link para download
-    const downloadLink = document.getElementById('downloadLink');
-    downloadLink.href = canvas.toDataURL();
+    // Criar link para o voucher gerado
+    const downloadLink = canvas.toDataURL();
+    const voucherLink = document.getElementById('voucherLink');
+    voucherLink.href = downloadLink;
+
+    // Mostrar a seção de download
     document.querySelector('.download-section').style.display = 'block';
+
+    // Adicionar evento de clique na imagem de presente para exibir o voucher
+    document.getElementById('giftImage').addEventListener('click', function() {
+        canvas.style.display = 'block'; // Mostrar o canvas com o voucher
+        this.style.display = 'none'; // Esconder a imagem de presente
+    });
 });
