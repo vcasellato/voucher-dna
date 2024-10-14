@@ -3,37 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Voucher</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Gerar Voucher com PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        #voucherImage {
+            width: 300px;
+            cursor: pointer;
+        }
+
+        #pdfButton {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #pdfButton:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Gerador de Voucher</h1>
-        <form id="voucherForm">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" required>
-
-            <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" required>
-
-            <label for="desconto">Desconto (%):</label>
-            <input type="number" id="desconto" min="0" max="100" required>
-
-            <button type="submit">Gerar Voucher</button>
-        </form>
-
-        <!-- Canvas onde o voucher será desenhado -->
-        <canvas id="voucherCanvas" width="400" height="350" style="display:none;"></canvas>
-
-        <!-- Link e imagem do voucher gerado -->
-        <div class="download-section" style="display:none;">
-            <h2>Seu voucher está pronto!</h2>
-            <a id="voucherLink" target="_blank">
-                <img id="voucherImage" alt="Clique no botão no voucher para ver o desconto" />
-            </a>
-        </div>
-    </div>
-
+    <h1>Gerar Voucher com PDF</h1>
+    
+    <!-- Imagem de presente -->
+    <img src="gift.jpg" alt="Imagem de Presente" id="voucherImage">
+    
+    <!-- Botão que aparecerá depois -->
+    <a id="pdfButton" href="#" target="_blank">Clique para ver o PDF</a>
+    
     <script src="script.js"></script>
 </body>
 </html>
