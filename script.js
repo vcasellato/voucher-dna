@@ -1,22 +1,41 @@
-document.getElementById('voucherImage').addEventListener('click', function() {
+document.getElementById('voucherForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
     const { jsPDF } = window.jspdf;
 
-    // Criar um PDF com jsPDF
-    const doc = new jsPDF();
-    
-    // Adicionar conteúdo no PDF (você pode personalizar este conteúdo)
-    doc.setFontSize(20);
-    doc.text("Voucher de Desconto", 60, 20);
-    doc.setFontSize(16);
-    doc.text("Nome: João Silva", 20, 40);
-    doc.text("Telefone: +351 123 456 789", 20, 60);
-    doc.text("Desconto: 20%", 20, 80);
+    // Pegando os valores do formulário
+    const nome = document.getElementById('nome').value;
+    const telefone = document.getElementById('telefone').value;
+    const desconto = document.getElementById('desconto').value;
 
-    // Gerar o PDF como um Data URL
-    const pdfUrl = doc.output('bloburl');
+    // Carregar a imagem de fundo do repositório
+    const img = new Image();
+    img.src = 'voucher-template.jpg';  // Coloque o caminho correto da imagem no seu repositório
 
-    // Exibir o botão de link para o PDF gerado
-    const pdfButton = document.getElementById('pdfButton');
-    pdfButton.href = pdfUrl; // Definir o link temporário do PDF
-    pdfButton.style.display = 'block'; // Mostrar o botão
+    img.onload = function() {
+        // Criar uma instância do jsPDF
+        const doc = new jsPDF({
+            orientation: 'portrait',
+            unit: 'px',
+            format: [img.width, img.height]  // Define o tamanho do PDF com base no tamanho da imagem
+        });
+
+        // Adicionar a imagem de fundo ao PDF
+        doc.addImage(img, 'JPEG', 0, 0, img.width, img.height);
+
+        // Adicionar o texto preenchido sobre a imagem
+        doc.setFontSize(20);
+        doc.setTextColor(255, 255, 255);  // Definir cor do texto (você pode ajustar conforme o fundo)
+        doc.text(`Nome: ${nome}`, 50, 200);  // Ajuste as coordenadas para posicionar o texto
+        doc.text(`Telefone: ${telefone}`, 50, 240);
+        doc.text(`Desconto: ${desconto}%`, 50, 280);
+
+        // Gerar a URL temporária para o PDF
+        const pdfUrl = doc.output('bloburl');
+
+        // Mostrar o botão com o link do PDF
+        const pdfButton = document.getElementById('pdfButton');
+        pdfButton.href = pdfUrl;
+        pdfButton.style.display = 'block';  // Exibir o botão para ver o PDF
+    };
 });
