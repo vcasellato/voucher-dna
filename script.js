@@ -20,12 +20,19 @@ document.getElementById('voucherForm').addEventListener('submit', function(event
             format: [img.width, img.height]  // Define o tamanho do PDF com base no tamanho da imagem
         });
 
+        // Carregar a fonte personalizada (Base64)
+        doc.addFileToVFS("CustomFont.ttf", "base64string_of_the_font_here");
+        doc.addFont("CustomFont.ttf", "CustomFont", "normal");
+
+        // Usar a fonte personalizada
+        doc.setFont("CustomFont");
+
         // Adicionar a imagem de fundo ao PDF
         doc.addImage(img, 'JPEG', 0, 0, img.width, img.height);
 
-        // Adicionar o texto preenchido sobre a imagem
+        // Adicionar o texto preenchido sobre a imagem com a fonte personalizada
         doc.setFontSize(20);
-        doc.setTextColor(255, 255, 255);  // Definir cor do texto (você pode ajustar conforme o fundo)
+        doc.setTextColor(255, 255, 255);  // Definir cor do texto
         doc.text(`Nome: ${nome}`, 50, 200);  // Ajuste as coordenadas para posicionar o texto
         doc.text(`Telefone: ${telefone}`, 50, 240);
         doc.text(`Desconto: ${desconto}%`, 50, 280);
