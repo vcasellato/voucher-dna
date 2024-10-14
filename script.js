@@ -37,20 +37,25 @@ document.getElementById('voucherForm').addEventListener('submit', function(event
     // Desconto
     ctx.fillText(`Desconto: ${desconto}%`, 20, 180);
 
-    // Exibir imagem do "presente" inicial
-    document.getElementById('giftImage').style.display = 'block';
+    // Desenhando um botão visual (parte da imagem)
+    ctx.fillStyle = "#28a745";
+    ctx.fillRect(120, 220, 160, 50);
+    ctx.fillStyle = "#fff";
+    ctx.font = "18px Arial";
+    ctx.fillText("Ver Voucher", 150, 250);
 
-    // Criar link para o voucher gerado
-    const downloadLink = canvas.toDataURL();
+    // Gerar a imagem do canvas
+    const voucherImage = document.getElementById('voucherImage');
+    const imageURL = canvas.toDataURL(); // Gerar URL da imagem
+
+    // Mostrar a imagem no link
+    voucherImage.src = imageURL;
+
+    // Definir o link que será clicado
     const voucherLink = document.getElementById('voucherLink');
-    voucherLink.href = downloadLink;
+    voucherLink.href = `https://meusite.com/voucher?nome=${nome}&telefone=${telefone}&desconto=${desconto}`;
 
-    // Mostrar a seção de download
+    // Exibir a seção de download
     document.querySelector('.download-section').style.display = 'block';
-
-    // Adicionar evento de clique na imagem de presente para exibir o voucher
-    document.getElementById('giftImage').addEventListener('click', function() {
-        canvas.style.display = 'block'; // Mostrar o canvas com o voucher
-        this.style.display = 'none'; // Esconder a imagem de presente
-    });
+    canvas.style.display = 'none'; // Esconder o canvas real (opcional)
 });

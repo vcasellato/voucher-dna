@@ -52,13 +52,8 @@ button:hover {
     text-align: center;
 }
 
-#voucherCanvas {
-    border: 1px solid #ddd;
+#voucherImage {
     margin-top: 20px;
-    display: none;
-}
-
-#giftImage {
-    display: block;
-    margin: 20px auto;
+    cursor: pointer;
+    border: 1px solid #ddd;
 }
