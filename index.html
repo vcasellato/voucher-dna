@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Voucher</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gerador de Voucher</h1>
+        <form id="voucherForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" required>
+
+            <label for="desconto">Desconto (%):</label>
+            <input type="number" id="desconto" min="0" max="100" required>
+
+            <button type="submit">Gerar Voucher</button>
+        </form>
+
+        <canvas id="voucherCanvas" width="400" height="250" style="display:none;"></canvas>
+        <div class="download-section" style="display:none;">
+            <h2>Seu voucher está pronto!</h2>
+            <a id="downloadLink" download="voucher.png">Baixar Voucher</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
